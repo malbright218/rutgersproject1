@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Favorite Movies</title>
+  <style type="text/css">
+    button,
+    div,
+    form,
+    input {
+      margin: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>Movie Search</h1>
+
+    <!-- Rendered buttons will get dumped here  -->
+    <div id="buttons-view"></div>
+
+    <form id="movie-form">
+      <label for="movie-input">Add a Movie!</label>
+      <input type="text" id="movie-input"><br>
+
+      <!-- Button triggers new movie to be added -->
+      <input id="add-movie" type="submit" value="Add a Movie!">
+    </form>
+
+    <!-- Movies will get dumped Dere -->
+    <div id="movies-view"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      // Initial array of movies
+
+// The movie from the textbox is then added to our array
+        
+        var queryURL = "https://opentdb.com/api.php?amount=10&category=18&difficulty=medium&type=multiple";
+
+        // Creates AJAX call for the specific movie button being clicked
+        $.ajax({
+          url: queryURL,
+          method: "GET"
+        }).then(function(response) {
+console.log(response);
+
+});
+
+
+
+
+      // Calling the renderButtons function to display the intial buttons
+    </script>
+  </div>
+</body>
+
+</html>
