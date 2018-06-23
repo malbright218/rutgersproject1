@@ -64,7 +64,7 @@ var markers, i;
 
       google.maps.event.addListener(markers, 'click', (function(markers, i) {
         return function() {
-          infowindow.setContent(locations[i][0]);
+          infowindow.setContent(data[i].name);
           infowindow.open(map, marker);
         }
       })(markers, i));}

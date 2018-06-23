@@ -1,5 +1,7 @@
 $(document).ready(function (){
 
+
+
 //========================================================================
 //Rank,Name,Brewery,Style,Geo
 for (var i = 0; i < data.length; i++) {
