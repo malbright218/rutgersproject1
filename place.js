@@ -19,17 +19,14 @@
       }).done(function(response) {
       latt = response.location.lat;
       long = response.location.lng;
-      
+      initMap();
       });
       
 
 
 
-      function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: latt, lng: long},
-          zoom: 13
-        });
+      function placer() {
+        
 
         var input = document.getElementById('pac-input');
         console.log(input);
