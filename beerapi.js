@@ -1,6 +1,6 @@
 
 var A0 = { name: "Kentucky Brunch Brand Stout", brewloc: "Toppling Goliath Brewing Company", style: "American Double / Imperial Stout", rank: 1, latt: "43.2739945", long: "-91.7263179" }
-var A1 = { name: "Heady Topper", brewloc: "The Alchemist Brewery and Visitors Center", style: "American Double / Imperial IPA", rank: 2, latt: "40.5293", long: "-75.3932" }
+var A1 = { name: "Heady Topper", brewloc: "The Alchemist Brewery and Visitors Center", style: "American Double / Imperial IPA", rank: 2, latt: "44.4759", long: "-72.7157" }
 var A2 = { name: "Barrel-Aged Abraxas", brewloc: "Perennial Artisan Ales", style: "American Double / Imperial Stout", rank: 3, latt: "38.545668", long: "-90.265731" }
 var A3 = { name: "Marshmallow Handjee", brewloc: "3 Floyds Brewing Co.", style: "Russian Imperial Stout", rank: 4, latt: "41.5355252", long: "-87.5168114" }
 var A4 = { name: "Hunahpu's Imperial Stout - Double Barrel Aged", brewloc: "Cigar City Brewing", style: "American Double / Imperial Stout", rank: 5, latt: "27.983045", long: "-82.532405" }
