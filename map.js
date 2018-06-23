@@ -19,7 +19,7 @@
       }).done(function(response) {
       latt = response.location.lat;
       long = response.location.lng;
-      
+      initMap();
       });
       
 
@@ -52,7 +52,23 @@
         marker.addListener('click', function() {
           infowindow.open(map, marker);
         });
+//=======================================================================================
+//Create multiple markers on the map
+var markers, i;
 
+    for (i = 0; i < data.length; i++) {  
+      markers = new google.maps.Marker({
+        position: new google.maps.LatLng(data[i].latt, data[i].long),
+        map: map
+      });
+
+      google.maps.event.addListener(markers, 'click', (function(markers, i) {
+        return function() {
+          infowindow.setContent(locations[i][0]);
+          infowindow.open(map, marker);
+        }
+      })(markers, i));}
+//=======================================================================================
         autocomplete.addListener('place_changed', function() {
           infowindow.close();
           var place = autocomplete.getPlace();
@@ -81,7 +97,8 @@
               place.formatted_address;
           infowindow.open(map, marker);
 
-          console.log(place);``
+          console.log(place);
         });
       }
+      
       
