@@ -6,10 +6,27 @@
       // This example requires the Places library. Include the libraries=places
       // parameter when you first load the API. For example:
       // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+      
+
+      
+      var latt;
+      var long;
+      var queryURL = "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyAX8feEcKAYX6Eo1RyDlHiv_7rGhYuTAyc";
+      
+      $.ajax({
+        url: queryURL,
+        method: "POST"
+      }).done(function(response) {
+      latt = response.location.lat;
+      long = response.location.lng;
+      
+      });
+      console.log(latt);
+      console.log(long);
 
       function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 40.535278, lng: -74.5214355},
+          center: {lat: latt, lng: long},
           zoom: 13
         });
 
@@ -58,3 +75,4 @@
           infowindow.open(map, marker);
         });
       }
+      
