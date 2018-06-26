@@ -137,7 +137,7 @@ var A134 = { name: "Crusher", brewloc: "The Alchemist Brewery and Visitors Cente
 var A135 = { name: "Cantillon Lou Pepe - Gueuze", brewloc: "Brasserie Cantillon", style: "Gueuze", rank: 136, latt: "50.84166", long: "4.335366" }
 var A136 = { name: "Darkness", brewloc: "Surly Brewing Company", style: "Russian Imperial Stout", rank: 137, latt: "44.973261", long: "-93.209401" }
 var A137 = { name: "Cutting Tiles - Galaxy", brewloc: "Trillium Brewing Company", style: "American Double / Imperial IPA", rank: 138, latt: "42.349827", long: "-71.048045" }
-var A138 = { name: "No Rules", brewloc: "Perrin Brewery", style: "American Porter", rank: 139, latt: "39.9771", long: "-75.1818" }
+var A138 = { name: "No Rules", brewloc: "Perrin Brewery", style: "American Porter", rank: 139, latt: "43.071332", long: "-85.681419" }
 var A139 = { name: "The Peach", brewloc: "de Garde Brewing", style: "American Wild Ale", rank: 140, latt: "45.420721", long: "-123.800167" }
 var A140 = { name: "Ground State", brewloc: "Bottle Logic Brewing", style: "American Double / Imperial Stout", rank: 141, latt: "33.849545", long: "-117.859775" }
 var A141 = { name: "Barrel Aged Bomb!", brewloc: "Prairie Artisan Ales", style: "American Double / Imperial Stout", rank: 142, latt: "36.136635", long: "-96.046502" }
@@ -251,3 +251,46 @@ var A248 = { name: "Kentucky Christmas Morning", brewloc: "Hardywood Park Craft 
 var A249 = { name: "Softly Spoken Magic Spells", brewloc: "SingleCut Beersmiths", style: "American Double / Imperial IPA", rank: 250, latt: "40.778352", long: "-73.901799" }
 
 var data = [A0, A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12, A13, A14, A15, A16, A17, A18, A19, A20, A21, A22, A23, A24, A25, A26, A27, A28, A29, A30, A31, A32, A33, A34, A35, A36, A37, A38, A39, A40, A41, A42, A43, A44, A45, A46, A47, A48, A49, A50, A51, A52, A53, A54, A55, A56, A57, A58, A59, A60, A61, A62, A63, A64, A65, A66, A67, A68, A69, A70, A71, A72, A73, A74, A75, A76, A77, A78, A79, A80, A81, A82, A83, A84, A85, A86, A87, A88, A89, A90, A91, A92, A93, A94, A95, A96, A97, A98, A99, A100, A101, A102, A103, A104, A105, A106, A107, A108, A109, A110, A111, A112, A113, A114, A115, A116, A117, A118, A119, A120, A121, A122, A123, A124, A125, A126, A127, A128, A129, A130, A131, A132, A133, A134, A135, A136, A137, A138, A139, A140, A141, A142, A143, A144, A145, A146, A147, A148, A149, A150, A151, A152, A153, A154, A155, A156, A157, A158, A159, A160, A161, A162, A163, A164, A165, A166, A167, A168, A169, A170, A171, A172, A173, A174, A175, A176, A177, A178, A179, A180, A181, A182, A183, A184, A185, A186, A187, A188, A189, A190, A191, A192, A193, A194, A195, A196, A197, A198, A199, A200, A201, A202, A203, A204, A205, A206, A207, A208, A209, A210, A211, A212, A213, A214, A215, A216, A217, A218, A219, A220, A221, A222, A223, A224, A225, A226, A227, A228, A229, A230, A231, A232, A233, A234, A235, A236, A237, A238, A239, A240, A241, A242, A243, A244, A245, A246, A247, A248, A249]
+console.log(data)
+var breweryArr = [];
+var coordsArr = [];
+ for (var i = 0; i < data.length; i++){
+   if (coordsArr.some(row => row.includes(data[i].long)) === false){ 
+coordsArr.push([data[i].latt, data[i].long])
+breweryArr.push(data[i].brewloc);
+ }
+ }
+var brewerySets =  Math.floor(coordsArr.length/25)
+var coordsArrP1 = coordsArr.slice(0,24)
+var coordsArrP2 = coordsArr.slice(25,49)
+var coordsArrP3 = coordsArr.slice(50,74)
+var coordsArrP4 = coordsArr.slice(75,78)
+console.log(breweryArr)
+
+ console.log(coordsArr);
+
+ 
+//retireves place id based on specific name using autocomplete api
+
+/*
+var coordinatesArr = [];
+var placeArr = [];
+for (var i=0; i<data.length; i++){
+  
+
+    var queryURL = "https://maps.googleapis.com/maps/api/place/autocomplete/json?input=" + data[i].brewloc + "&key=AIzaSyDdvw2hFiNIZk1rOhBqAPO36tCt8I8gogo";
+       $.ajax({
+           url: queryURL,
+           method: "GET"
+       }).done(function(response) {
+    console.log(response);
+    for (var i = 0; i < data.length; i++){
+   if (coordinatesArr.some(row => row.includes(response.long)) === false){ 
+coordinatesArr.push([response.lng, response.lng])
+placeArr.push(place_id);
+
+ }
+ }
+    });
+    }
+    */
