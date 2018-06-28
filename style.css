@@ -64,9 +64,10 @@
 
    body{
 
-    background-image: url("https://storage.googleapis.com/webdesignledger.pub.network/LaT/edd/2016/02/clean-colorful-bubble-texture-7-1560x1170.jpg");
+    /*background-image: url("https://img00.deviantart.net/882d/i/2008/042/e/d/local_texture__three_by_one_by_beyond_oddities.jpg");*/
     background-repeat: no-repeat;
     background-attachment: fixed;
+    background-size: cover;
    }
 
    #navrow, #nav, #navcol {

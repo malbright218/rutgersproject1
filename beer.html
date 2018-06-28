@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Top Beer Locator</title>
+    <!-- Style Links-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Fugaz+One|Monda|Oswald|Vast+Shadow" rel="stylesheet">
+
+    <!-- Script Links -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="beerapi.js" type="text/javascript"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdvw2hFiNIZk1rOhBqAPO36tCt8I8gogo&libraries=places&callback=initMap"
+        async defer></script>
+    <script src="map.js" type="text/javascript"></script>
+<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->  
+<body>
+    <!-- ============================================= NAVBAR ==================================================-->
+    <div class="container fluid" id="nav">
+        <div class="row" id="navrow">
+            <div class="col-md" id="navcol">
+                <nav class="navbar text-center">
+                    <h1 class="text-center">
+                        <h1>CHEERS</h1>
+                        <h5>for</h5>
+                        <h1>BEERS</h1>
+                        <span class="typcn typcn-beer"></span>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- =============================================== MAP ====================================================-->
+    <input id="pac-input" class="controls" type="text" placeholder="Enter a location">
+    <div id="map"></div>
+    <div id="infowindow-content">
+        <span id="place-name" class="title"></span>
+        <br> Place ID
+        <span id="place-id"></span>
+        <br>
+        <span id="place-address"></span>
+    </div>
+    <!-- =============================================== TABLE ====================================================-->
+    <div class="container fluid">
+        <input type="button" id="routebtn" value="route" />
+        <table class="table" id="myTable">
+            <thead>
+                <tr>
+                    <th scope="col" class="col-header" id="rank">Rank</th>
+                    <th scope="col" class="col-header" id="name">Name</th>
+                    <th scope="col" class="col-header" id="brewery">Brewery</th>
+                    <th scope="col" class="col-header" id="style">Style</th>
+                    <th scope="col" class="col-header" id="crow-distance">Distance (actual)</th>
+                    <th scope="col" class="col-header" id="driving-distance">Distance (driving)</th>
+                </tr>
+            </thead>
+            <tbody class="table-body" id="table-body2">
+                <!-- Insert beer data here -->
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</head>
+
+</html>

@@ -8,79 +8,89 @@
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
-robbykey = "AIzaSyBedSxVEt6C9NFK1btkL4H26iM1tUgUSd8"    //Robby key
-chadkey = "AIzaSyBookB9C0GkXdMO2WOVkvv2ayvf7MAwz48"     //Chad key
-markkey = "AIzaSyCb4ECXvIw2VqdXjyNTqPHo0fgGyjuWQew"     //Mark key
+robertskey = "AIzaSyBedSxVEt6C9NFK1btkL4H26iM1tUgUSd8"
+mykey = "AIzaSyBookB9C0GkXdMO2WOVkvv2ayvf7MAwz48"
 var latt;
+var map;
 var long;
 var queryURL = "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyAX8feEcKAYX6Eo1RyDlHiv_7rGhYuTAyc";
 var newPlaceID;
 var drivingDistances;
 var mileConverter = 0.000621371192;
+var infowindow;
+var directionsDisplay;
+var directionsService;
+var lastBrewLat;
+var lastBrewLong;
+var markerArr = [];
 
 
-function populateTable(arr) {
+  //=======================================================================================
+  //Creates a table of the beer data
+  
+function populateTable(arr){
   var blankRow = $("<tr></tr>");
-  $(".table-body").append(blankRow);
+ $(".table-body").append(blankRow);
   for (var i = 0; i < arr.length; i++) {
-    //console.log("populating")
+   console.log("populating")
     var newrow = $("<tr></tr>");
     var beerRank = arr[i].rank;
-    newrow.attr("latt", data[i].latt);
-    newrow.attr("long", data[i].long);
-    newrow.addClass("beer");
-    // console.log(newrow);
+    newrow.addClass("beer-rows");
+    //newrow.attr()
     var beerRankData = ("<td>" + beerRank + "</td>");
     //++++++++++++++++++++++++++++++++++++++++++
     var beerName = arr[i].name;
     var beerNameData = ("<td>" + beerName + "</td>");
+    newrow.attr("id", beerNameData);
     //++++++++++++++++++++++++++++++++++++++++++
     var brewery = arr[i].brewloc;
     var breweryData = ("<td>" + brewery + "</td>");
     newrow.attr("brew-data", brewery)
     //++++++++++++++++++++++++++++++++++++++++++
-    var style = arr[i].style;
+    var style= arr[i].style;
     var style = style.toLowerCase();
     var styleData = ("<td>" + style + "</td>");
     //++++++++++++++++++++++++++++++++++++++++++
     var lat1 = latt;
     var lon1 = long;
+    
     var lat2 = arr[i].latt;
     var lon2 = arr[i].long;
+    newrow.attr("brew-lat", arr[i].latt);
     var p = 0.017453292519943295;    // Math.PI / 180
-    var c = Math.cos((lat2 - lat1) * p);
+    var c = Math.cos((lat2-lat1) * p);
     var d = Math.cos(lat1 * p);
     var e = Math.cos(lat2 * p);
     var f = Math.cos((lon2 - lon1) * p);
-    var a = 0.5 - c / 2 + d * e * (1 - f) / 2;
+    var a = 0.5 - c/2 + d * e * (1 - f)/2;
 
     var dist1 = 12742 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
-
+    
     var dist2 = dist1 * 0.621371
     var dist3 = dist2.toFixed(2)
-
+    
 
 
     //var distdata = ("<td>" + dist3 + "</td>")
     var drivingDistHTML;
     var drivingTimeHTML;
-    for (var x = 0; x < coordsArr.length; x++) {
-      if (brewery == breweryArr[x]) {
-        if (drivingDistances.rows[0].elements[x].status == "OK") {
-          ////console.log(drivingDistances.rows[0].elements[x].distance.value + "api pull");
-          var drivingDistData = Math.round((drivingDistances.rows[0].elements[x].distance.value) * mileConverter)
-          var drivingTimeData = (drivingDistances.rows[0].elements[x].duration.text)
-          drivingDistHTML = ("<td>" + drivingDistData + "</td>");
-          drivingTimeHTML = ("<td>" + drivingTimeData + "</td>");
-          ////console.log(drivingDistData + "drivingdistdata");
-          ////console.log(drivingTimeData + "drivingdistdata");
-        }
-        else {
-          drivingTimeHTML = ("<td> no driving info</td>");
-          drivingDistHTML = ("<td> no driving info</td>");
-        }
+    for(var x = 0; x < coordsArr.length; x++) {
+      if (brewery == breweryArr[x]){
+        if (drivingDistances.rows[0].elements[x].status =="OK"){
+         //console.log(drivingDistances.rows[0].elements[x].distance.value + "api pull");
+        var drivingDistData =  Math.round((drivingDistances.rows[0].elements[x].distance.value)* mileConverter)
+        var drivingTimeData = (drivingDistances.rows[0].elements[x].duration.text)
+        drivingDistHTML =("<td>" + drivingDistData + "</td>");
+        drivingTimeHTML = ("<td>" + drivingTimeData + "</td>");
+       //console.log(drivingDistData + "drivingdistdata");
+       //console.log(drivingTimeData + "drivingdistdata");
+      }
+      else{
+        drivingTimeHTML = ("<td> no driving info</td>");
+        drivingDistHTML = ("<td> no driving info</td>");
       }
     }
+  }
     // Append the td elements to the new table row
     $(newrow).append(beerRankData, beerNameData, breweryData, styleData, drivingDistHTML, drivingTimeData);
     // Append the table row to the tbody element
@@ -89,26 +99,8 @@ function populateTable(arr) {
 
 
 
-
-  function calcCrow(lat1, lon1, lat2, lon2) {
-    var R = 6371; // km
-    var dLat = toRad(lat2 - lat1);
-    var dLon = toRad(lon2 - lon1);
-    var lat1 = toRad(lat1);
-    var lat2 = toRad(lat2);
-
-    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1) * Math.cos(lat2);
-    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    var d = R * c;
-    return d;
-  }
-
-  // Converts numeric degrees to radians
-  function toRad(Value) {
-    return Value * Math.PI / 180;
-  }
-
+  
+  
 }
 /*
  data.sort(function(a, b) {
@@ -117,21 +109,26 @@ function populateTable(arr) {
           return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
       });
 */
-function documentReadyFunction() {
+function documentReadyFunction(){
   $(document).ready(function () {
-    //console.log(latt);
-    //console.log(long);
-    //console.log(data)
-    //console.log(drivingDistances)
+    console.log(latt);
+    console.log(long); 
+    console.log(data)
+    console.log(drivingDistances)
     populateTable(data);
-    $(".col-header").on("click", function () {
-      sortTable();
-    });
+    $(".col-header").on("click", "#name", function() {
+      if ($(this).attr("id") == "name"){
+        
 
+      }
+      console.log("stsuff")
+//sortTable();    
+  });
+  
 
   });
 
-}
+  }
 //==================================================================
 // AJAX Call
 $.ajax({
@@ -142,70 +139,106 @@ $.ajax({
   long = response.location.lng;
   initMap();
 
-  var queryURL2 = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latt + "," + long + "&destinations=enc:" + encoded + ":&key=" + robbykey;
-  $.ajax({
-    url: queryURL2,
-    method: "GET"
-  }).done(function (response) {
-    //console.log(response);
-    drivingDistances = response;
-    //console.log("distanceresponse");
-    //console.log(drivingDistances.rows[0].elements)
-    //console.log(drivingDistances)
-    documentReadyFunction()
-  });
+var queryURL2 = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latt + "," + long + "&destinations=enc:" + encoded+ ":&key="+ mykey;
+$.ajax({
+  url: queryURL2,
+  method: "GET"
+}).done(function (response) {
+console.log(response);
+drivingDistances = response;
+console.log("distanceresponse");
+console.log(drivingDistances.rows[0].elements)
+console.log(drivingDistances)
+documentReadyFunction()
+});
 
 });
-function calculateDistance() {
+function calculateDistance(){
   document.getElementById("table-body2").innerHTML = "";
-  var queryURL4 = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latt + "," + long + "&destinations=enc:" + encoded + ":&key=" + robbykey;
+var queryURL4 = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latt + "," + long + "&destinations=enc:" + encoded+ ":&key=" + mykey;
+$.ajax({
+  url: queryURL4,
+  method: "GET"
+}).done(function (response) {
+console.log(response);
+drivingDistances = response;
+console.log("distanceresponse");
+console.log(drivingDistances)
+populateTable(data);
+});
+}
+//var queryURL3 = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latt + "," + long + "&destinations=enc:" + encoded+ ":&key="+ mykey;
+
+function recaculateDistance(placeID){
+  document.getElementById("table-body2").innerHTML = "";
+  var queryURL3 = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=place_id:"+placeID+ "&destinations=enc:" + encoded+ ":&key="+ mykey;
   $.ajax({
-    url: queryURL4,
+    url: queryURL3,
     method: "GET"
   }).done(function (response) {
-    //console.log(response);
-    drivingDistances = response;
-    //console.log("distanceresponse");
-    //console.log(drivingDistances)
-    populateTable(data);
-  });
-}
-var queryURL3 = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latt + "," + long + "&destinations=enc:" + encoded + ":&key=" + robbykey;
-
-function recaculateDistance(placeID) {
-  document.getElementById("table-body2").innerHTML = "";
-  var queryURL2 = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=place_id:" + placeID + "&destinations=enc:" + encoded + ":&key=" + robbykey;
-  $.ajax({
-    url: queryURL2,
-    method: "GET"
-  }).done(function (response) {
-    //console.log(response);
-    drivingDistances = response;
-    //console.log("distanceresponse2");
-    //console.log(drivingDistances)
-    populateTable(data);
+  console.log(response);
+  drivingDistances = response;
+  console.log("distanceresponse2");
+  console.log(drivingDistances)
+  populateTable(data);
   });
 
 }
+
+
+
 //==================================================================
 // AJAX Call
+function calcRoute() {
+  var start = new google.maps.LatLng(latt, long);
+  //var end = new google.maps.LatLng(38.334818, -181.884886);
+  var endlat;
+  var endlong;
+  for(var i=0; i<data.length; i++){
+    if (data[i].latt == lastBrewLat)
+    {
+      endlat = data[i].latt;
+      endlong = data[i].long
+    }
+
+  }
+  var end = new google.maps.LatLng(endlat, endlong);
+  var request = {
+    origin: start,
+    destination: end,
+    travelMode: google.maps.TravelMode.DRIVING
+  };
+  directionsService.route(request, function(response, status) {
+    if (status == google.maps.DirectionsStatus.OK) {
+      directionsDisplay.setDirections(response);
+      directionsDisplay.setMap(map);
+    } else {
+      alert("Directions Request from " + start.toUrlValue(6) + " to " + end.toUrlValue(6) + " failed: " + status);
+    }
+  });
+}
+
+$(document).on("click", "#routebtn", function() {
+  console.log("stsuff")
+calcRoute();
+});
 
 //==================================================================
 //Map Initialization Function
 function initMap() {
-  var map = new google.maps.Map(document.getElementById('map'), {
+  map = new google.maps.Map(document.getElementById('map'), {
     center: { lat: latt, lng: long },
     zoom: 12
   });
-
+  directionsService = new google.maps.DirectionsService();
   var input = document.getElementById('pac-input'); //takes the value you type in the searc box
   var autocomplete = new google.maps.places.Autocomplete(input);
   autocomplete.bindTo('bounds', map);
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-  var infowindow = new google.maps.InfoWindow();
+  infowindow = new google.maps.InfoWindow();
   var infowindowContent = document.getElementById('infowindow-content');
-
-
+  directionsDisplay = new google.maps.DirectionsRenderer();
+  directionsDisplay.setMap(map);
   infowindow.setContent("your current location");
   var marker = new google.maps.Marker({
     map: map,
@@ -216,23 +249,23 @@ function initMap() {
     infowindow.open(map, marker);
   });
 
-  google.maps.event.addListener(map, 'click', function (event) {
+  google.maps.event.addListener(map, 'click', function(event) {
     infowindow.close();
     infowindow.setContent("your chosen location");
     marker.setPlace(null);
     latt = event.latLng.lat();
-    long = event.latLng.lng()
-    //console.log(latt, long)
-    marker.setPosition(new google.maps.LatLng(latt, long), )
-
-    map.panTo(new google.maps.LatLng(latt, long), )
+    long  = event.latLng.lng()
+    console.log(latt, long)
+    marker.setPosition(new google.maps.LatLng(latt, long),)
+   
+    map.panTo(new google.maps.LatLng(latt, long),)
     calculateDistance()
     //alert( "Latitude: "+event.latLng.lat()+" "+", longitude: "+event.latLng.lng() ); 
-    //console.log(event.latlng);
-  });
+    console.log(event.latlng);
+ });
+ 
 
-
-
+ 
   //=======================================================================================
   //Create multiple markers on the map
   var markers, i;
@@ -242,24 +275,22 @@ function initMap() {
       position: new google.maps.LatLng(data[i].latt, data[i].long),
       map: map
     });
-
+//markerArr.push(markers);
     google.maps.event.addListener(markers, 'click', (function (markers, i) {
       return function () {
         map.panTo(markers.getPosition());
+        console.log(markers.getPosition().lat());
+        lastBrewLat = markers.getPosition().lat();
+        console.log(markers.getPosition().lng());
+        lastBrewLong = markers.getPosition().lng();
         infowindow.setContent(data[i].brewloc);
         infowindow.open(map, markers);
       }
     })(markers, i));
-  };
-  //=======================================================================================
-  $(document).on("click", ".beer", map, function () {
-    console.log("clicked");
-    var lt = $(this).attr("latt");
-    var lg = $(this).attr("long");
-    map.panTo(new google.maps.LatLng(lt, lg));
-    infowindow.setContent($(this).brewloc); //this portion currently not working
+  }
+var marker2;
 
-  });
+
   //=======================================================================================
   //Adds a marker based on what was typed into the search box
   autocomplete.addListener('place_changed', function () {
@@ -267,7 +298,9 @@ function initMap() {
     var place = autocomplete.getPlace();
     if (!place.geometry) {
       return;
-    } if (place.geometry.viewport) {
+    }
+
+    if (place.geometry.viewport) {
       map.fitBounds(place.geometry.viewport);
     } else {
       map.panTo(place.geometry.location);
@@ -280,10 +313,20 @@ function initMap() {
       location: place.geometry.location,
 
     });
-    //console.log(place.geometry.location)
+    console.log(place.geometry.location)
     long = place.geometry.viewport.b.b
     latt = place.geometry.viewport.f.f
     infowindow.setContent(infowindowContent);
+  
+    console.log("it works")
+  
+    console.log("it works2");
+    //data.sort(function(a, b) {
+      //var textA = a.style;
+      //var textB = b.style.toUpperCase();
+      //return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+    //});
+  
     marker.setVisible(true);
     newPlaceID = place.place_id;
     recaculateDistance(newPlaceID);
@@ -291,86 +334,136 @@ function initMap() {
     infowindowContent.children['place-id'].textContent = place.place_id;
     infowindowContent.children['place-address'].textContent = place.formatted_address;
     infowindow.open(map, marker);
+
+    
   });
+
+  
+  //=======================================================================================
+
+
+   
+        
+    
+
 }
 
+$(document).on('click','tr', data, function() {
+  console.log($(this).attr("brew-data"));
+    console.log("stuff")
+   var brewlat = ($(this).attr("brew-lat"));
+ console.log(brewlat)
+ //for (i = 0; i < markerArr.length; i++) {
+   //console.log(markerArr[i].getPosition())
+ //}
+   for (var i = 0; i < data.length; i++) {
+     console.log(data[i.brewloc])
+     if(data[i].brewloc==($(this).attr("brew-data"))){
+       console.log("workingstuff")
+       var latLng = new google.maps.LatLng(data[i].latt, data[i].long); //Makes a latlng
+       map.panTo(new google.maps.LatLng(data[i].latt, data[i].long))
+       lastBrewLat = data[i].latt,
+       lastBrewLong = data[i].long;
+         infowindow.setContent(data[i].brewloc);
+         //infowindow.open(map, markers);
+       
+     }
+ }
+  
+   });
+   var tableArray = [];
+   var headers = [];
+   $('#caltbl th').each(function(index, item) {
+       headers[index] = $(item).html();
+   });
+   $('#caltbl tr').has('td').each(function() {
+       var arrayItem = {};
+       $('td', $(this)).each(function(index, item) {
+           arrayItem[headers[index]] = $(item).html();
+       });
+       tableArray.push(arrayItem);
+   });
+
+   console.log(tableArray);
+//code below here was mostly from stackoverflow and google documentation.
 function sortTable() {
-  const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
-
-  const comparer = (idx, asc) => (a, b) => ((v1, v2) =>
-    v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v1 - v2 : v1.toString().localeCompare(v2)
-  )(getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
-
-  // do the work...
-  document.querySelectorAll('th').forEach(th => th.addEventListener('click', (() => {
-    const table = th.closest('table');
-    Array.from(table.querySelectorAll('tr:nth-child(n+2)'))
-      .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
-      .forEach(tr => table.appendChild(tr));
-  })));
+  var tbl = document.getElementById("caltbl").tBodies[0];
+    var store = [];
+    for(var i=0, len=tbl.rows.length; i<len; i++){
+        var row = tbl.rows[i];
+        var sortnr = parseFloat(row.cells[0].textContent || row.cells[0].innerText);
+        if(!isNaN(sortnr)) store.push([sortnr, row]);
+    }
+    store.sort(function(x,y){
+        return x[0] - y[0];
+    });
+    for(var i=0, len=store.length; i<len; i++){
+        tbl.appendChild(store[i][1]);
+    }
+    store = null;
 }
 
 
 
 var encoded = createEncodings(coordsArr);//the encoded polyline
-//console.log(encoded);
+console.log(encoded);
 //these next 3 functions create an encoded polyline out of the coordinate array. it adds the coordinates together and then turns it into an ASCII string which allows us to request-
 //-all the coordinates at once
 function createEncodings(coords) {
-  var i = 0;
-
-  var plat = 0;
-  var plng = 0;
-
-  var encoded_points = "";
-
-  for (i = 0; i < coords.length; ++i) {
-    var lat = coords[i][0];
-    var lng = coords[i][1];
-
-    encoded_points += encodePoint(plat, plng, lat, lng);
-
-    plat = lat;
-    plng = lng;
-  }
-
-  // close polyline
-  encoded_points += encodePoint(plat, plng, coords[0][0], coords[0][1]);
-
-  return encoded_points;
+	var i = 0;
+ 
+	var plat = 0;
+	var plng = 0;
+ 
+	var encoded_points = "";
+ 
+	for(i = 0; i < coords.length; ++i) {
+	    var lat = coords[i][0];				
+		var lng = coords[i][1];		
+ 
+		encoded_points += encodePoint(plat, plng, lat, lng);
+ 
+	    plat = lat;
+	    plng = lng;
+	}
+ 
+	// close polyline
+	encoded_points += encodePoint(plat, plng, coords[0][0], coords[0][1]);
+ 
+	return encoded_points;
 }
-
+ 
 function encodePoint(plat, plng, lat, lng) {
-  var late5 = Math.round(lat * 1e5);
-  var plate5 = Math.round(plat * 1e5)
-
-  var lnge5 = Math.round(lng * 1e5);
-  var plnge5 = Math.round(plng * 1e5)
-
-  dlng = lnge5 - plnge5;
-  dlat = late5 - plate5;
-
-  return encodeSignedNumber(dlat) + encodeSignedNumber(dlng);
+	var late5 = Math.round(lat * 1e5);
+    var plate5 = Math.round(plat * 1e5)    
+ 
+	var lnge5 = Math.round(lng * 1e5);
+    var plnge5 = Math.round(plng * 1e5)
+ 
+	dlng = lnge5 - plnge5;
+	dlat = late5 - plate5;
+ 
+    return encodeSignedNumber(dlat) + encodeSignedNumber(dlng);
 }
-
+ 
 function encodeSignedNumber(num) {
   var sgn_num = num << 1;
-
+ 
   if (num < 0) {
     sgn_num = ~(sgn_num);
   }
-
-  return (encodeNumber(sgn_num));
+ 
+  return(encodeNumber(sgn_num));
 }
-
+ 
 function encodeNumber(num) {
   var encodeString = "";
-
+ 
   while (num >= 0x20) {
     encodeString += (String.fromCharCode((0x20 | (num & 0x1f)) + 63));
     num >>= 5;
   }
-
+ 
   encodeString += (String.fromCharCode(num + 63));
   return encodeString;
 }

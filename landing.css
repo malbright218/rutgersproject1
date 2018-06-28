@@ -1,0 +1,26 @@
+body {
+    background-color: #212221;
+}
+
+#welcome {
+    font: 64px/30px 'Vast Shadow', 'Arial Black';
+    font-style: normal;
+    font-variant-ligatures: normal;
+    font-variant-caps: normal;
+    font-variant-numeric: normal;
+    font-variant-east-asian: normal;
+    font-weight: normal;
+    font-stretch: normal;
+    color: #865;
+    text-align: center;
+}
+
+#cheers, #check {
+    font-family: 'Monda', sans-serif;
+    color: #865;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+}
