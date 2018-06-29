@@ -1,5 +1,23 @@
 body {
-    background-color: #212221;
+    background:  url('https://media.giphy.com/media/8SbOVFqoQqstq/giphy.gif') no-repeat center center fixed;
+  
+  background-size: cover;
+}
+
+#title{
+    font: 64px/30px 'Vast Shadow', 'Arial Black';
+    font-style: normal;
+    font-variant-ligatures: normal;
+    font-variant-caps: normal;
+    font-variant-numeric: normal;
+    font-variant-east-asian: normal;
+    font-weight: normal;
+    font-stretch: normal;
+    color: whitesmoke;
+    text-align: center;
+    margin-top:5%;
+    text-shadow: 2px 2px 8px black;
+
 }
 
 #welcome {
@@ -11,14 +29,31 @@ body {
     font-variant-east-asian: normal;
     font-weight: normal;
     font-stretch: normal;
-    color: #865;
+    color: whitesmoke;
     text-align: center;
+    margin-top: 10%;
+    text-shadow: 2px 2px 8px black;
+}
+
+@-webkit-keyframes blink {
+    from { color: rgba(0, 0, 0, 0.3); }
+    to { color: whitesmoke; }
+   }
+
+.display4{
+    margin: 30px;
 }
 
 #cheers, #check {
+   
     font-family: 'Monda', sans-serif;
-    color: #865;
+    color: whitesmoke;
     text-align: center;
+    animation-duration: 1000ms;
+    animation-name: blink;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    text-shadow: 2px 2px 8px black;
 }
 
 a {
@@ -26,5 +61,5 @@ a {
 }
 
 #check:hover {
-    color: white;
+    color: #865;
 }

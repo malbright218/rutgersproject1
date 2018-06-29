@@ -23,33 +23,53 @@ var directionsService;
 var lastBrewLat;
 var lastBrewLong;
 var markerArr = [];
+var rankReverse = false;
+var nameReverse = false;
+var styleReverse = false;
+var breweryReverse = false;
+var distanceReverse = false;
+var newData = data;
+var currentBrewery;
+console.log(newData)
+
+
 //=======================================================================================
 //Creates a table of the beer data
   
 function populateTable(arr){
-  var blankRow = $("<tr></tr>");
-  $(".table-body").append(blankRow);
+  console.log(arr);
+
   for (var i = 0; i < arr.length; i++) {
-   //console.log("populating")
-    var newrow = $("<tr></tr>");
-    var beerRank = arr[i].rank;
-    newrow.addClass("beer-rows");
-    //newrow.attr()
-    var beerRankData = ("<td>" + beerRank + "</td>");
+    var blankcard = $("<div></div>");
+    blankcard.addClass("card");
+   var ranknumber = arr[i].rank; 
+   
+   var ranknumberdata = $("<h5 class='number-circle'>" + ranknumber + "</h5>");     //append to the card
+  
     //++++++++++++++++++++++++++++++++++++++++++
     var beerName = arr[i].name;
-    var beerNameData = ("<td>" + beerName + "</td>");
-    newrow.attr("id", beerNameData);
+    
+    var beerNameData = ("<h6 class='card-title'>" + beerName + "</h6>");
+    
+    
     //++++++++++++++++++++++++++++++++++++++++++
     var brewery = arr[i].brewloc;
-    var breweryData = ("<td>" + brewery + "</td>");
-    newrow.attr("brew-data", brewery)
+    
+    var breweryData = ("<a class='btn btn-primary' style='color: #fff' latt='" + data[i].latt + "' brew-data='" + data[i].brewloc + "' >" + brewery + "</a>");
+   // console.log(breweryData);
+    //breweryData.attr("data-latt", data[i].latt);
+    //breweryData.attr("data-long", data[i].long);
+    
+    
     //++++++++++++++++++++++++++++++++++++++++++
     var style= arr[i].style;
     var style = style.toLowerCase();
-    var styleData = ("<td>" + style + "</td>");
+    var styleData = ("<p class='card-text'>" + style + "</p>");
+    
     //++++++++++++++++++++++++++++++++++++++++++
-    var lat1 = latt;
+
+    
+    /*var lat1 = latt;
     var lon1 = long;
     var lat2 = arr[i].latt;
     var lon2 = arr[i].long;
@@ -63,33 +83,39 @@ function populateTable(arr){
     var dist1 = 12742 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
     var dist2 = dist1 * 0.621371
     var dist3 = dist2.toFixed(2)
-    //var distdata = ("<td>" + dist3 + "</td>")
+    var distdata = ("<td>" + dist3 + "</td>")*/
     var drivingDistHTML;
     var drivingTimeHTML;
     for(var x = 0; x < coordsArr.length; x++) {
       if (brewery == breweryArr[x]){
+       // console.log(drivingDistances.rows[0].elements[x]);
         if (drivingDistances.rows[0].elements[x].status =="OK"){
          ////console.log(drivingDistances.rows[0].elements[x].distance.value + "api pull");
         var drivingDistData =  Math.round((drivingDistances.rows[0].elements[x].distance.value)* mileConverter)
         var drivingTimeData = (drivingDistances.rows[0].elements[x].duration.text)
         drivingDistHTML =("<td>" + drivingDistData + "</td>");
-        drivingTimeHTML = ("<td>" + drivingTimeData + "</td>");
+        drivingTimeHTML = drivingTimeData
        ////console.log(drivingDistData + "drivingdistdata");
        ////console.log(drivingTimeData + "drivingdistdata");
+       arr[i].drivingDistance = drivingDistData
+      //console.log(data[i].drivingDistance);
       }
       else{
-        drivingTimeHTML = ("<td> no driving info</td>");
-        drivingDistHTML = ("<td> no driving info</td>");
+        drivingTimeHTML = ("no driving info");
+        arr[i].drivingDistance = 100000000;
+        drivingDistHTML = ("no driving info");
       }
     }
   }
-  var drive = ("<td>" + drivingTimeData + "</td>");
-    // Append the td elements to the new table row
-    $(newrow).append(beerRankData, beerNameData, breweryData, styleData, drivingDistHTML, drive);
+  var drive = ("<p class='card-text cardin'>" + drivingTimeHTML + "</p>");
+  //console.log(drivingTimeHTML)
+    // Append the td elements to the new table row*/
+    $(blankcard).append(ranknumberdata, drive, beerNameData,styleData, breweryData);
     // Append the table row to the tbody element
-    $(".table-body").append(newrow);
+    $("#cards").append(blankcard);
   }  
 }
+
 /*
  data.sort(function(a, b) {
           var textA = a.rank
@@ -142,13 +168,13 @@ documentReadyFunction()
 
 });
 function calculateDistance(){
-  document.getElementById("table-body2").innerHTML = "";
+  $("#cards").empty();
 var queryURL4 = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latt + "," + long + "&destinations=enc:" + encoded+ ":&key=" + mykey;
 $.ajax({
   url: queryURL4,
   method: "GET"
 }).done(function (response) {
-//console.log(response);
+  console.log(response + "teste");
 drivingDistances = response;
 //console.log("distanceresponse");
 //console.log(drivingDistances)
@@ -158,13 +184,13 @@ populateTable(data);
 //var queryURL3 = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latt + "," + long + "&destinations=enc:" + encoded+ ":&key="+ mykey;
 
 function recaculateDistance(placeID){
-  document.getElementById("table-body2").innerHTML = "";
+  $("#cards").empty();
   var queryURL3 = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=place_id:"+placeID+ "&destinations=enc:" + encoded+ ":&key="+ mykey;
   $.ajax({
     url: queryURL3,
     method: "GET"
   }).done(function (response) {
-  //console.log(response);
+  console.log(response + "teste");
   drivingDistances = response;
   //console.log("distanceresponse2");
   //console.log(drivingDistances)
@@ -201,7 +227,7 @@ function calcRoute() {
       directionsDisplay.setDirections(response);
       directionsDisplay.setMap(map);
     } else {
-      alert("Directions Request from " + start.toUrlValue(6) + " to " + end.toUrlValue(6) + " failed: " + status);
+      //alert("Directions Request from " + start.toUrlValue(6) + " to " + end.toUrlValue(6) + " failed: " + status);
     }
   });
 }
@@ -210,7 +236,7 @@ $(document).on("click", "#routebtn", function() {
   //console.log("stsuff")
 calcRoute();
 });
-
+var marker2;
 //==================================================================
 //Map Initialization Function
 function initMap() {
@@ -236,18 +262,19 @@ function initMap() {
   marker.addListener('click', function () {
     infowindow.open(map, marker);
   });
-
+   marker2 = marker
   google.maps.event.addListener(map, 'click', function(event) {
     infowindow.close();
     infowindow.setContent("your chosen location");
     marker.setPlace(null);
     latt = event.latLng.lat();
     long  = event.latLng.lng()
-    //console.log(latt, long)
+    
     marker.setPosition(new google.maps.LatLng(latt, long),)
    
     map.panTo(new google.maps.LatLng(latt, long),)
     calculateDistance()
+    console.log(latt, long)
     //alert( "Latitude: "+event.latLng.lat()+" "+", longitude: "+event.latLng.lng() ); 
     //console.log(event.latlng);
  });
@@ -257,7 +284,7 @@ function initMap() {
   //=======================================================================================
   //Create multiple markers on the map
   var markers, i;
-
+var currentBeers = []
   for (i = 0; i < data.length; i++) {
     markers = new google.maps.Marker({
       position: new google.maps.LatLng(data[i].latt, data[i].long),
@@ -271,12 +298,28 @@ function initMap() {
         lastBrewLat = markers.getPosition().lat();
         //console.log(markers.getPosition().lng());
         lastBrewLong = markers.getPosition().lng();
-        var b = data[i].brewloc;
-        var bsm = b.toLowerCase();
-        var n = data[i].name;
-        infowindow.setContent(bsm + "<br>" + "<h6>" + n + "</h6>");
+        //var b = data[i].brewloc;
+        //var bsm = b.toLowerCase();
+        //var n = data[i].name;
+        //infowindow.setContent(bsm + "<br>" + "<h6>" + n + "</h6>");
+        currentBeers = []
+  for (i = 0; i < data.length; i++) {
+    if (lastBrewLat == data[i].latt){
+currentBrewery = data[i].brewloc
+if (currentBeers.includes(data[i].name) == false){
+currentBeers.push(" "+ data[i].name)
+}
+    }
+  }
+        console.log(currentBeers)
+        console.log(data)
+        infowindowContent.children['place-name'].textContent = currentBrewery;
         
+        infowindowContent.children['place-address'].textContent = currentBeers;
+        infowindow.setContent(infowindowContent);
         infowindow.open(map, markers);
+        marker2= markers
+        //infowindow.open(map, markers);
       }
     })(markers, i));
   }
@@ -323,7 +366,6 @@ var marker2;
     newPlaceID = place.place_id;
     recaculateDistance(newPlaceID);
     infowindowContent.children['place-name'].textContent = place.name;
-    infowindowContent.children['place-id'].textContent = place.place_id;
     infowindowContent.children['place-address'].textContent = place.formatted_address;
     infowindow.open(map, marker);
 
@@ -340,9 +382,10 @@ var marker2;
 
 }
 
-$(document).on('click','tr', data, function() {
+$(document).on('click','.btn-primary', map, function() {
+ 
   //console.log($(this).attr("brew-data"));
-    //console.log("stuff")
+    console.log("stuff")
    var brewlat = ($(this).attr("brew-lat"));
  //console.log(brewlat)
  //for (i = 0; i < markerArr.length; i++) {
@@ -351,12 +394,14 @@ $(document).on('click','tr', data, function() {
    for (var i = 0; i < data.length; i++) {
      //console.log(data[i.brewloc])
      if(data[i].brewloc==($(this).attr("brew-data"))){
+       currentBrewery = $(this).attr("brew-data");
+       console.log(currentBrewery)
        //console.log("workingstuff")
        var latLng = new google.maps.LatLng(data[i].latt, data[i].long); //Makes a latlng
        map.panTo(new google.maps.LatLng(data[i].latt, data[i].long))
        lastBrewLat = data[i].latt,
        lastBrewLong = data[i].long;
-         infowindow.setContent(data[i].brewloc);
+         infowindow.setContent(currentBrewery);
          //infowindow.open(map, markers);
        
      }
@@ -460,8 +505,128 @@ function encodeNumber(num) {
   return encodeString;
 }
 
+$(document).on("click", "li", function() {
+  $("#cards").empty();
+  console.log("navtest")
+  if ($(this).attr("id") == "name"){
+  console.log("name")
+  if (nameReverse == true){
+    data.reverse(function(a, b) {
+      var textA = a.name
+      var textB = b.name
+      return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+  });
+  nameReverse = false;
+  }
+   else if (nameReverse == false){
+   data.sort(function(a, b) {
+      var textA = a.name
+      var textB = b.name
+      return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+  });
+  nameReverse = true;
+}
+  
+  populateTable(data);
+  }
+  if ($(this).attr("id") == "rank"){
+    console.log("rank")
+    if (rankReverse == true){
+      data.reverse(function(a, b) {
+        var textA = a.rank
+        var textB = b.rank
+        return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+    });
+    rankReverse = false;
+    }
+     else if (rankReverse == false){
+     data.sort(function(a, b) {
+        var textA = a.rank
+        var textB = b.rank
+        return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+    });
+    rankReverse = true;
+  }
+  console.log(data)
+    populateTable(data);
+    }
+    if ($(this).attr("id") == "brewery"){
+      console.log("brewery")
+      if (breweryReverse == true){
+        data.reverse(function(a, b) {
+          var textA = a.brewloc
+          var textB = b.brewloc
+          return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+      });
+      breweryReverse = false;
+      }
+       else if (breweryReverse == false){
+       data.sort(function(a, b) {
+          var textA = a.brewloc
+          var textB = b.brewloc
+          return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+      });
+      breweryReverse = true;
+    }
+    console.log(data)
+      populateTable(data);
+      }
+      if ($(this).attr("id") == "style"){
+        console.log("style")
+        if (styleReverse == true){
+          data.reverse(function(a, b) {
+            var textA = a.style
+            var textB = b.style
+            return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+        });
+        styleReverse = false;
+        }
+         else if (styleReverse == false){
+         data.sort(function(a, b) {
+            var textA = a.style
+            var textB = b.style
+            return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+        });
+        styleReverse = true;
+      }
+      console.log(data)
+        populateTable(data);
+        }
+
+        if ($(this).attr("id") == "distance"){
+          console.log("distance")
+          if (distanceReverse == true){
+            data.reverse(function(a, b) {
+              var textA = a.drivingDistance
+              console.log(textA)
+              var textB = b.drivingDistance
+              return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+          });
+          distanceReverse = false;
+          }
+           else if (distanceReverse == false){
+           data.sort(function(a, b) {
+              var textA = a.drivingDistance
+              var textB = b.drivingDistance
+              return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+          });
+          distanceReverse = true;
+        }
+        console.log(data)
+          
+          populateTable(data);
+          }
+  
+  
+//sortTable();    
+});
+
 //=======================================================================================
 
 
 
 
+$(document).on("click", "#clearroute", function() {
+  //console.log("stsuff")
+  directionsDisplay.setMap(null);
+ });

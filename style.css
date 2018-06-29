@@ -1,104 +1,197 @@
-
-
 #map {
-    height: 50%;
-    width: 85%;
-    position: sticky;
-    top: 0;
-    
-  }
-  /* Optional: Makes the sample page fill the window. */
-  html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
+  height: 250px;
+  margin: 0;
+  padding: 0px;
+  width: 100%;
+}
+#wrapper {
+  height: 50%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 10000;
+}
+#card {
+  margin-top: 350px;
+  position: absolute;
+  z-index: -10000;
+}
+
+#buttons {
+  margin-top: 25%;
+}
+
+#cards {
+  margin-top: 15px;
+}
+
+/* Optional: Makes the sample page fill the window. */
+html, body {
+  height: 100%;
   
-  .controls {
-    background-color: #fff;
-    border-radius: 2px;
-    border: 1px solid transparent;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-    box-sizing: border-box;
-    font-family: Roboto;
-    font-size: 15px;
-    font-weight: 300;
-    height: 29px;
-    margin-left: 17px;
-    margin-top: 10px;
-    outline: none;
-    padding: 0 11px 0 13px;
-    text-overflow: ellipsis;
-    width: 400px;
-  }
+}
 
-  .controls:focus {
-    border-color: #4d90fe;
-  }
-  .title {
-    font-weight: bold;
-  }
-  #infowindow-content {
-    display: none;
-  }
-  #map #infowindow-content {
-    display: inline;
-  }
-  .borderless td, .borderless th {
-    border: none;
-  } 
+.controls {
+  background-color: #fff;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  height: 29px;
+  margin-left: 17px;
+  margin-top: 10px;
+  outline: none;
+  padding: 0 11px 0 13px;
+  text-overflow: ellipsis;
+  width: 400px;
+}
 
-  tr {
-    height: 60px;
-    font-family: 'Monda', sans-serif;
-    color: #000;
-    font-size: 12px;
-  }
+.controls:focus {
+  border-color: #4d90fe;
+}
+.title {
+  font-weight: bold;
+}
+#infowindow-content {
+  display: none;
+}
+#map #infowindow-content {
+  display: inline;
+}
+.borderless td, .borderless th {
+  border: none;
+} 
 
-  h1{
-    font-family: 'Vast Shadow', cursive;
-    color: gold;
-   }
+tr {
+  height: 60px;
+  font-family: 'Monda', sans-serif;
+  color: #000;
+  font-size: 12px;
+}
 
-   h5 {
-    font-family: 'Oswald', sans-serif;
-   }
+h1{
+  font-family: 'Vast Shadow', cursive;
+  color: gold;
+ }
 
-   h6 {
-     font-family: 'Fugaz One', cursive
-   }
-   
-   .navbar {
-   background-color: brown;
+ h5 {
+  font-family: 'Oswald', sans-serif;
+ }
+
+ li {
+   text-align: center;
+ }
+
+ #for {
+   color: gold;
+   padding: 0;
+   margin-left: 4px;
+   margin-right: 4px;
+ }
+
+ #cheers {
+  color: gold;
+  padding: 0;
+  margin-left: 4px;
+  margin-right: -204px;
+ }
+
+ #hdbeers {
+  color: gold;
+  padding: 0;
+  margin-left: -204px;
+  margin-right: 4px;
+ }
+
+ h6 {
+   font-family: 'Fugaz One', cursive
+ }
+ 
+ .navbar {
+  background: #157EFB;
+  width: 100%;
+  border-bottom: 3px solid gold;
+  height: 50px;
+  
+ }
+
+ #sortbar {
+   height: 50px;
+ }
+
+ body{
+
+  /*background-image: url("https://artisanalbrewworks.com/wp-content/uploads/2016/03/beer-background.jpg");*/
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+ }
+
+ #navrow, #nav, #navcol {
    width: 100%;
-   border-bottom: 3px solid gold;
-   }
+ }
+.card {
+   display: inline;
+   width: 25%;
+   float: left;
+   padding: 10px;
+   margin: 0 auto;
+   position: relative;
+ }
+ 
+.navbtn!important {
+  border: none;
+  float: right;
+  font-size: 1rem;
+  position: relative;
+}
 
-   body{
 
-    /*background-image: url("https://artisanalbrewworks.com/wp-content/uploads/2016/03/beer-background.jpg");*/
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-   }
+ .card-text {
+   font-size: 8pt;
+   word-wrap: 
+ }
 
-   #navrow, #nav, #navcol {
-     width: 100%;
-   }
+ .btn, .btn-primary {
+   width: 100%;
+   color: #fff;
+   text-align: left;
+ }
+ 
+ .number-circle {
+  border-radius: 50%;
+  behavior: url(PIE.htc);
+  /* remove if you don't care about IE8 */
+  width: 40px;
+  height: 40px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 14px;
+  padding-bottom: 0px;
+  background: #157EFB;
+  color: #fff;
+  text-align: center;
+  font: 14px Arial, sans-serif;
+}
+#routebtn {
+border-radius: 12px;
+     background-color:white;
+     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+     transition: all 0.3s ease 0s;
+     cursor: pointer;
+     outline: none;
+}
 
-   #routebtn {
-    border-radius: 12px;
-    background-color:white;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease 0s;
-    cursor: pointer;
-    outline: none;
-   }
+.button:hover {
+background-color: #2EE59D;
+box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+color: #fff;
+transform: translateY(-7px);
+}
 
-   .button:hover {
-    background-color: #2EE59D;
-    box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
-    color: #fff;
-    transform: translateY(-7px);
-   }
-   
+.cardin {
+display: inline;
+}
