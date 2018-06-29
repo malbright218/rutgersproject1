@@ -14,12 +14,15 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdvw2hFiNIZk1rOhBqAPO36tCt8I8gogo&libraries=places&callback=initMap"
         async defer></script>
     <script src="map.js" type="text/javascript"></script>
+
+
 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->  
 <body>
     <!-- ============================================= NAVBAR ==================================================-->
-    <div class="container fluid" id="nav">
-        <div class="row" id="navrow">
-            <div class="col-md" id="navcol">
+    <div class="container">
+        <div class="row">
+            <div class="col-md">
+    
                 <nav class="navbar text-center">
                     <h1 class="text-center">
                         <h1>CHEERS</h1>
@@ -32,7 +35,7 @@
     </div>
     <!-- =============================================== MAP ====================================================-->
     <input id="pac-input" class="controls" type="text" placeholder="Enter a location">
-    <div id="map"></div>
+    <div class="container fluid" id="map"></div>
     <div id="infowindow-content">
         <span id="place-name" class="title"></span>
         <br> Place ID
@@ -41,9 +44,9 @@
         <span id="place-address"></span>
     </div>
     <!-- =============================================== TABLE ====================================================-->
-    <div class="container fluid">
+    <div class="container">
         <input type="button" id="routebtn" value="route" />
-        <table class="table" id="myTable">
+        <table class="table table-striped borderless" id="myTable">
             <thead>
                 <tr>
                     <th scope="col" class="col-header" id="rank">Rank</th>

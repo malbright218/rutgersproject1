@@ -23,16 +23,14 @@ var directionsService;
 var lastBrewLat;
 var lastBrewLong;
 var markerArr = [];
-
-
-  //=======================================================================================
-  //Creates a table of the beer data
+//=======================================================================================
+//Creates a table of the beer data
   
 function populateTable(arr){
   var blankRow = $("<tr></tr>");
- $(".table-body").append(blankRow);
+  $(".table-body").append(blankRow);
   for (var i = 0; i < arr.length; i++) {
-   console.log("populating")
+   //console.log("populating")
     var newrow = $("<tr></tr>");
     var beerRank = arr[i].rank;
     newrow.addClass("beer-rows");
@@ -53,7 +51,6 @@ function populateTable(arr){
     //++++++++++++++++++++++++++++++++++++++++++
     var lat1 = latt;
     var lon1 = long;
-    
     var lat2 = arr[i].latt;
     var lon2 = arr[i].long;
     newrow.attr("brew-lat", arr[i].latt);
@@ -63,27 +60,22 @@ function populateTable(arr){
     var e = Math.cos(lat2 * p);
     var f = Math.cos((lon2 - lon1) * p);
     var a = 0.5 - c/2 + d * e * (1 - f)/2;
-
     var dist1 = 12742 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
-    
     var dist2 = dist1 * 0.621371
     var dist3 = dist2.toFixed(2)
-    
-
-
     //var distdata = ("<td>" + dist3 + "</td>")
     var drivingDistHTML;
     var drivingTimeHTML;
     for(var x = 0; x < coordsArr.length; x++) {
       if (brewery == breweryArr[x]){
         if (drivingDistances.rows[0].elements[x].status =="OK"){
-         //console.log(drivingDistances.rows[0].elements[x].distance.value + "api pull");
+         ////console.log(drivingDistances.rows[0].elements[x].distance.value + "api pull");
         var drivingDistData =  Math.round((drivingDistances.rows[0].elements[x].distance.value)* mileConverter)
         var drivingTimeData = (drivingDistances.rows[0].elements[x].duration.text)
         drivingDistHTML =("<td>" + drivingDistData + "</td>");
         drivingTimeHTML = ("<td>" + drivingTimeData + "</td>");
-       //console.log(drivingDistData + "drivingdistdata");
-       //console.log(drivingTimeData + "drivingdistdata");
+       ////console.log(drivingDistData + "drivingdistdata");
+       ////console.log(drivingTimeData + "drivingdistdata");
       }
       else{
         drivingTimeHTML = ("<td> no driving info</td>");
@@ -91,16 +83,12 @@ function populateTable(arr){
       }
     }
   }
+  var drive = ("<td>" + drivingTimeData + "</td>");
     // Append the td elements to the new table row
-    $(newrow).append(beerRankData, beerNameData, breweryData, styleData, drivingDistHTML, drivingTimeData);
+    $(newrow).append(beerRankData, beerNameData, breweryData, styleData, drivingDistHTML, drive);
     // Append the table row to the tbody element
     $(".table-body").append(newrow);
-  }
-
-
-
-  
-  
+  }  
 }
 /*
  data.sort(function(a, b) {
@@ -111,17 +99,17 @@ function populateTable(arr){
 */
 function documentReadyFunction(){
   $(document).ready(function () {
-    console.log(latt);
-    console.log(long); 
-    console.log(data)
-    console.log(drivingDistances)
+    //console.log(latt);
+    //console.log(long); 
+    //console.log(data)
+    //console.log(drivingDistances)
     populateTable(data);
     $(".col-header").on("click", "#name", function() {
       if ($(this).attr("id") == "name"){
         
 
       }
-      console.log("stsuff")
+      //console.log("stsuff")
 //sortTable();    
   });
   
@@ -144,11 +132,11 @@ $.ajax({
   url: queryURL2,
   method: "GET"
 }).done(function (response) {
-console.log(response);
+//console.log(response);
 drivingDistances = response;
-console.log("distanceresponse");
-console.log(drivingDistances.rows[0].elements)
-console.log(drivingDistances)
+//console.log("distanceresponse");
+//console.log(drivingDistances.rows[0].elements)
+//console.log(drivingDistances)
 documentReadyFunction()
 });
 
@@ -160,10 +148,10 @@ $.ajax({
   url: queryURL4,
   method: "GET"
 }).done(function (response) {
-console.log(response);
+//console.log(response);
 drivingDistances = response;
-console.log("distanceresponse");
-console.log(drivingDistances)
+//console.log("distanceresponse");
+//console.log(drivingDistances)
 populateTable(data);
 });
 }
@@ -176,10 +164,10 @@ function recaculateDistance(placeID){
     url: queryURL3,
     method: "GET"
   }).done(function (response) {
-  console.log(response);
+  //console.log(response);
   drivingDistances = response;
-  console.log("distanceresponse2");
-  console.log(drivingDistances)
+  //console.log("distanceresponse2");
+  //console.log(drivingDistances)
   populateTable(data);
   });
 
@@ -219,7 +207,7 @@ function calcRoute() {
 }
 
 $(document).on("click", "#routebtn", function() {
-  console.log("stsuff")
+  //console.log("stsuff")
 calcRoute();
 });
 
@@ -255,13 +243,13 @@ function initMap() {
     marker.setPlace(null);
     latt = event.latLng.lat();
     long  = event.latLng.lng()
-    console.log(latt, long)
+    //console.log(latt, long)
     marker.setPosition(new google.maps.LatLng(latt, long),)
    
     map.panTo(new google.maps.LatLng(latt, long),)
     calculateDistance()
     //alert( "Latitude: "+event.latLng.lat()+" "+", longitude: "+event.latLng.lng() ); 
-    console.log(event.latlng);
+    //console.log(event.latlng);
  });
  
 
@@ -279,11 +267,15 @@ function initMap() {
     google.maps.event.addListener(markers, 'click', (function (markers, i) {
       return function () {
         map.panTo(markers.getPosition());
-        console.log(markers.getPosition().lat());
+        //console.log(markers.getPosition().lat());
         lastBrewLat = markers.getPosition().lat();
-        console.log(markers.getPosition().lng());
+        //console.log(markers.getPosition().lng());
         lastBrewLong = markers.getPosition().lng();
-        infowindow.setContent(data[i].brewloc);
+        var b = data[i].brewloc;
+        var bsm = b.toLowerCase();
+        var n = data[i].name;
+        infowindow.setContent(bsm + "<br>" + "<h6>" + n + "</h6>");
+        
         infowindow.open(map, markers);
       }
     })(markers, i));
@@ -313,14 +305,14 @@ var marker2;
       location: place.geometry.location,
 
     });
-    console.log(place.geometry.location)
+    //console.log(place.geometry.location)
     long = place.geometry.viewport.b.b
     latt = place.geometry.viewport.f.f
     infowindow.setContent(infowindowContent);
   
-    console.log("it works")
+    //console.log("it works")
   
-    console.log("it works2");
+    //console.log("it works2");
     //data.sort(function(a, b) {
       //var textA = a.style;
       //var textB = b.style.toUpperCase();
@@ -349,17 +341,17 @@ var marker2;
 }
 
 $(document).on('click','tr', data, function() {
-  console.log($(this).attr("brew-data"));
-    console.log("stuff")
+  //console.log($(this).attr("brew-data"));
+    //console.log("stuff")
    var brewlat = ($(this).attr("brew-lat"));
- console.log(brewlat)
+ //console.log(brewlat)
  //for (i = 0; i < markerArr.length; i++) {
-   //console.log(markerArr[i].getPosition())
+   ////console.log(markerArr[i].getPosition())
  //}
    for (var i = 0; i < data.length; i++) {
-     console.log(data[i.brewloc])
+     //console.log(data[i.brewloc])
      if(data[i].brewloc==($(this).attr("brew-data"))){
-       console.log("workingstuff")
+       //console.log("workingstuff")
        var latLng = new google.maps.LatLng(data[i].latt, data[i].long); //Makes a latlng
        map.panTo(new google.maps.LatLng(data[i].latt, data[i].long))
        lastBrewLat = data[i].latt,
@@ -384,7 +376,7 @@ $(document).on('click','tr', data, function() {
        tableArray.push(arrayItem);
    });
 
-   console.log(tableArray);
+   //console.log(tableArray);
 //code below here was mostly from stackoverflow and google documentation.
 function sortTable() {
   var tbl = document.getElementById("caltbl").tBodies[0];
@@ -406,7 +398,7 @@ function sortTable() {
 
 
 var encoded = createEncodings(coordsArr);//the encoded polyline
-console.log(encoded);
+//console.log(encoded);
 //these next 3 functions create an encoded polyline out of the coordinate array. it adds the coordinates together and then turns it into an ASCII string which allows us to request-
 //-all the coordinates at once
 function createEncodings(coords) {

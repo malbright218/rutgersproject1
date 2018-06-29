@@ -24,3 +24,7 @@ body {
 a {
     text-decoration: none;
 }
+
+#check:hover {
+    color: white;
+}

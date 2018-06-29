@@ -2,6 +2,9 @@
 
 #map {
     height: 50%;
+    width: 85%;
+    position: sticky;
+    top: 0;
     
   }
   /* Optional: Makes the sample page fill the window. */
@@ -10,6 +13,7 @@
     margin: 0;
     padding: 0;
   }
+  
   .controls {
     background-color: #fff;
     border-radius: 2px;
@@ -40,11 +44,15 @@
   #map #infowindow-content {
     display: inline;
   }
+  .borderless td, .borderless th {
+    border: none;
+  } 
 
   tr {
-    height: 80px;
+    height: 60px;
     font-family: 'Monda', sans-serif;
-    color: #000
+    color: #000;
+    font-size: 12px;
   }
 
   h1{
@@ -55,6 +63,10 @@
    h5 {
     font-family: 'Oswald', sans-serif;
    }
+
+   h6 {
+     font-family: 'Fugaz One', cursive
+   }
    
    .navbar {
    background-color: brown;
@@ -64,7 +76,7 @@
 
    body{
 
-    /*background-image: url("https://img00.deviantart.net/882d/i/2008/042/e/d/local_texture__three_by_one_by_beyond_oddities.jpg");*/
+    /*background-image: url("https://artisanalbrewworks.com/wp-content/uploads/2016/03/beer-background.jpg");*/
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -74,4 +86,19 @@
      width: 100%;
    }
 
+   #routebtn {
+    border-radius: 12px;
+    background-color:white;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+   }
+
+   .button:hover {
+    background-color: #2EE59D;
+    box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+    color: #fff;
+    transform: translateY(-7px);
+   }
    
