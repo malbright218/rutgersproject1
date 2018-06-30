@@ -111,7 +111,7 @@ function populateTable(arr){
   var drive = ("<p class='card-text cardin'>" + drivingDistHTML +"</p>");
   //console.log(drivingTimeHTML)
     // Append the td elements to the new table row*/
-    $(blankcard).append(ranknumberdata, drive, beerNameData,styleData, breweryData);
+    $(blankcard).append(ranknumberdata, beerNameData,styleData, drive, breweryData);
     // Append the table row to the tbody element
     $("#cards").append(blankcard);
   }  
