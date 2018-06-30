@@ -2,39 +2,59 @@
 <html>
 
 <head>
-    <title>Cheers for Beers</title>
+    <title>Top Beer Locator</title>
     <!-- Style Links-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
     <link rel="stylesheet" href="style.css" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Fugaz+One|Monda|Oswald|Vast+Shadow" rel="stylesheet">
+
     <!-- Script Links -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="beerapi.js" type="text/javascript"></script>
-    <script src="map.js" type="text/javascript"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdvw2hFiNIZk1rOhBqAPO36tCt8I8gogo&libraries=places&callback=initMap"
         async defer></script>
-</head>
+        <script src="https://apis.google.com/js/api.js" type="text/javascript"></script>
 
+    <script src="map.js" type="text/javascript"></script>
+
+
+<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->  
 <body>
-    <div id="wrapper">
-<!-- =======================NAVBAR =========================-->
-        <div>
-            <div class="row">
-                <div class="col-md">
-                    <nav class="navbar text-center">
-                        <h1 class="text-center">
-                            <h1 id="cheers">CHEERS</h1>
-                            <h5 id="for">for</h5>
-                            <h1 id="hdbeers">BEERS</h1>
-                            <span class="typcn typcn-beer"></span>
-                        </h1>
-                    </nav>
-                </div>
+    <!-- =======================NAVBAR =========================-->
+    <div>
+        <div class="row">
+            <div class="col-md">
+    
+                <nav class="navbar text-center">
+                    <h1 class="text-center">
+                        <h1>CHEERS</h1>
+                        <h5 id="for">for</h5>
+                        <h1>BEERS</h1>
+                        <span class="typcn typcn-beer"></span>
+                </nav>
             </div>
         </div>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light" id="sortbar">
-            <a class="navbar-brand" href="#">Sort by</a>
-            <div class="collapse navbar-collapse" id="navbarNav">
+    </div>
+
+    
+    <!-- =======================MAP ============================-->
+    <div id="wrapper"><div id="map"></div></div>
+    <input id="pac-input" class="controls" type="text" placeholder="Enter a location">
+    <div id="infowindow-content">
+        <span id="place-name" class="title"></span>
+        <br>
+        <hr>   
+        <span id="place-address"></span>
+    </div>
+    <!-- ====================== BUTTONS ========================-->
+  
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" id="sortbar">
+            <a class="navbar-brand" href="#">Sort by:</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item" id="rank">
                         <a class="nav-link" href="#">Rank </a>
@@ -48,25 +68,24 @@
                     <li class="nav-item" id="style">
                         <a class="nav-link" href="#">Beer Style</a>
                     </li>
-                    <li class=- "nav-item" id="distance">
+                    <li class=-"nav-item" id="distance">
                         <a class="nav-link" href="#">Distance</a>
                     </li>
-                </ul class="navbar-nav navbar-right ml-auto" style="float: right">
+                </ul class = "navbar-nav navbar-right ml-auto route-buttons" style="float: right" >
                 <a class="nav-link" id="routebtn" style="float: right">Route</a>
                 <a class="nav-link" id="clearroute" style="float:right;">Clear Route</a>
             </div>
         </nav>
-<!-- =======================MAP ============================-->
-        <div id="map"></div>
-        <input id="pac-input" class="controls" type="text" placeholder="Enter a location">
-        <div id="infowindow-content">
-            <span id="place-name" class="title"></span>
-            <hr>
-            <span id="place-address"></span>
-        </div>
+        
+    <!-- ====================== CARDS ==========================-->
+    <div class = "card-div" id="cards">
+    
     </div>
-<!-- ====================== CARDS ==========================-->
-    <div id="cards" style="margin-top: 350px">
-    </div>
+    
+          
+    
 </body>
+
+</head>
+
 </html>

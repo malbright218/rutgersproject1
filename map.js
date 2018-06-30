@@ -7,7 +7,7 @@
 // This example requires the Places library. Include the libraries=places
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-// Below are the global variables used in this application
+
 robertskey = "AIzaSyBedSxVEt6C9NFK1btkL4H26iM1tUgUSd8"
 mykey = "AIzaSyBookB9C0GkXdMO2WOVkvv2ayvf7MAwz48"
 var latt;
@@ -31,62 +31,124 @@ var distanceReverse = false;
 var newData = data;
 var currentBrewery;
 
+console.log(newData)
+
+
 //=======================================================================================
-//Creates a grid of cards with the beer data
-function populateTable(arr) {
+//Creates a table of the beer data
+  
+function populateTable(arr){
+  console.log(arr);
+
   for (var i = 0; i < arr.length; i++) {
-    var blankcard = $("<div></div>"); //creating a div INSIDE the for loop because I want each one to be an individual card
-    blankcard.addClass("card"); //adding the class of card to the div above, this allows each one to be recognised as a card via bootstrap
-    var ranknumber = arr[i].rank; //creating a variable and giving it the beer rank for each iteration
-    var ranknumberdata = $("<h5 class='number-circle'>" + ranknumber + "</h5>");  //putting the rank variable within the appropriate elements
+    var blankcard = $("<div></div>");
+    blankcard.addClass("card");
+   var ranknumber = arr[i].rank; 
+   
+   var ranknumberdata = $("<h5 class='number-circle'>" + ranknumber + "</h5>");     //append to the card
+  
     //++++++++++++++++++++++++++++++++++++++++++
-    var beerName = arr[i].name; //creating a variable and giving it the name of the beer for each iterariont
-    var beerNameData = ("<h6 class='card-title'>" + beerName + "</h6>");  //putting the name variable within the appropriate HTML elements
+    var beerName = arr[i].name;
+    
+    var beerNameData = ("<h6 class='card-title'>" + beerName + "</h6>");
+    
+    
     //++++++++++++++++++++++++++++++++++++++++++
-    var brewery = arr[i].brewloc; //creating a variable to hold the brewery name of each beer
+    var brewery = arr[i].brewloc;
+    
     var breweryData = ("<a class='btn btn-primary' style='color: #fff' latt='" + data[i].latt + "' brew-data='" + data[i].brewloc + "' >" + brewery + "</a>");
+   // console.log(breweryData);
+    //breweryData.attr("data-latt", data[i].latt);
+    //breweryData.attr("data-long", data[i].long);
+    
+    
     //++++++++++++++++++++++++++++++++++++++++++
-    var style = arr[i].style; //creating a variable to hold the style of each beer
-    var style = style.toLowerCase();  //this was done from an aesthetics point of view, I thought it looked better in lowercase
-    var styleData = ("<p class='card-text'>" + style + "</p>"); //putting the style variable in a <p> tag
+    var style= arr[i].style;
+    var style = style.toLowerCase();
+    var styleData = ("<p class='card-text'>" + style + "</p>");
+    
     //++++++++++++++++++++++++++++++++++++++++++
-    var drivingTimeHTML;  //one of the API's allows for us to find driving distance and using the calculation below store it where we 
-    for (var x = 0; x < coordsArr.length; x++) {  //can output it into the cards on the front end
-      if (brewery == breweryArr[x]) {  //looking for the specific brewery is in the beer array
-        if (drivingDistances.rows[0].elements[x].status == "OK") {
-          var drivingDistData = Math.round((drivingDistances.rows[0].elements[x].distance.value) * mileConverter)
-          var drivingTimeData = (drivingDistances.rows[0].elements[x].duration.text)
-          drivingDistHTML = ("<td>" + drivingDistData + "</td>");
-          drivingTimeHTML = drivingTimeData
-          arr[i].drivingDistance = drivingDistData
-        } else {
-          drivingTimeHTML = ("no driving info");
-          arr[i].drivingDistance = 100000000;
-          drivingDistHTML = ("no driving info");
-        }
+
+    
+    /*var lat1 = latt;
+    var lon1 = long;
+    var lat2 = arr[i].latt;
+    var lon2 = arr[i].long;
+    newrow.attr("brew-lat", arr[i].latt);
+    var p = 0.017453292519943295;    // Math.PI / 180
+    var c = Math.cos((lat2-lat1) * p);
+    var d = Math.cos(lat1 * p);
+    var e = Math.cos(lat2 * p);
+    var f = Math.cos((lon2 - lon1) * p);
+    var a = 0.5 - c/2 + d * e * (1 - f)/2;
+    var dist1 = 12742 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
+    var dist2 = dist1 * 0.621371
+    var dist3 = dist2.toFixed(2)
+    var distdata = ("<td>" + dist3 + "</td>")*/
+    var drivingDistHTML;
+    var drivingTimeHTML;
+    for(var x = 0; x < coordsArr.length; x++) {
+      if (brewery == breweryArr[x]){
+       // console.log(drivingDistances.rows[0].elements[x]);
+        if (drivingDistances.rows[0].elements[x].status =="OK"){
+         ////console.log(drivingDistances.rows[0].elements[x].distance.value + "api pull");
+        var drivingDistData =  Math.round((drivingDistances.rows[0].elements[x].distance.value)* mileConverter)
+        var drivingTimeData = (drivingDistances.rows[0].elements[x].duration.text)
+        drivingDistHTML =("<p>" + drivingDistData + " miles away"+ "</p>");
+        drivingTimeHTML = drivingTimeData
+       ////console.log(drivingDistData + "drivingdistdata");
+       ////console.log(drivingTimeData + "drivingdistdata");
+       arr[i].drivingDistance = drivingDistData
+      //console.log(data[i].drivingDistance);
+      }
+      else{
+        drivingTimeHTML = ("<p> no driving info </p>");
+        arr[i].drivingDistance = 100000000;
+        drivingDistHTML = ("<p> no driving info </p>");
       }
     }
-    var drive = ("<p class='card-text cardin'>" + drivingTimeHTML + "</p>"); //putting the driving distance in a <p> tag
-    $(blankcard).append(ranknumberdata, drive, beerNameData, styleData, breweryData); //all of the variables are appended to the CARD DIV
-    $("#cards").append(blankcard);  //all the card divs are appended to a container div with the id of "cards"
   }
+  var drive = ("<p class='card-text cardin'>" + drivingDistHTML +"</p>");
+  //console.log(drivingTimeHTML)
+    // Append the td elements to the new table row*/
+    $(blankcard).append(ranknumberdata, drive, beerNameData,styleData, breweryData);
+    // Append the table row to the tbody element
+    $("#cards").append(blankcard);
+  }  
 }
-//=======================================================================================
-function documentReadyFunction() {
+
+/*
+ data.sort(function(a, b) {
+          var textA = a.rank
+          var textB = b.rank
+          return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+      });
+*/
+function documentReadyFunction(){
   $(document).ready(function () {
+    //console.log(latt);
+    //console.log(long); 
+    //console.log(data)
+    //console.log(drivingDistances)
     populateTable(data);
-    $(".col-header").on("click", "#name", function () {
-      if ($(this).attr("id") == "name") {
-      }
-    });
+    //$(".col-header").on("click", "#name", function() {
+      //if ($(this).attr("id") == "name"){
+        
+
+      //}
+      //console.log("stsuff")
+//sortTable();    
+ // });
+  
+
   });
-}
+
+  }
 //==================================================================
 // AJAX Call
 $.ajax({
   url: queryURL,
   method: "POST"
-  
 }).done(function (response) {
   latt = response.location.lat;
   long = response.location.lng;
@@ -246,7 +308,7 @@ var currentBeers = []
     if (lastBrewLat == data[i].latt){
 currentBrewery = data[i].brewloc
 if (currentBeers.includes(data[i].name) == false){
-currentBeers.push(" "+ data[i].name)
+currentBeers.push(" |"+ data[i].name +"|" )
 }
     }
   }
@@ -322,7 +384,7 @@ var marker2;
 }
 
 $(document).on('click','.btn-primary', map, function() {
- 
+  $("html, body").animate({ scrollTop: 0 }, "slow");
   //console.log($(this).attr("brew-data"));
     console.log("stuff")
    var brewlat = ($(this).attr("brew-lat"));

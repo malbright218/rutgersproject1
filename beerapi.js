@@ -85,7 +85,7 @@ var A82 = { name: "Double Shot", brewloc: "Tree House Brewing Company", style: "
 var A83 = { name: "Keene Idea", brewloc: "Alpine Beer Company", style: "American Double / Imperial IPA", rank: 84, latt: "32.8351644", long: "-116.7626535" }
 var A84 = { name: "Cutting Tiles (Mosaic)", brewloc: "Trillium Brewing Company", style: "American Double / Imperial IPA", rank: 85, latt: "42.349827", long: "-71.048045" }
 var A85 = { name: "§ucaba", brewloc: "Firestone Walker Brewing Co.", style: "English Barleywine", rank: 86, latt: "35.595861111111", long: "-120.69433333333" }
-var A86 = { name: "Notorious Triple IPA", brewloc: "Boneyard Beer Company", style: "American Double / Imperial IPA", rank: 87, latt: "47.507383", long: "19.031193" }
+var A86 = { name: "Notorious Triple IPA", brewloc: "Boneyard Beer Company", style: "American Double / Imperial IPA", rank: 87, latt: "44.053975", long: "-121.308061" }
 var A87 = { name: "Pseudo Sue", brewloc: "Toppling Goliath Brewing Company", style: "American Pale Ale", rank: 88, latt: "43.2739945", long: "-91.7263179" }
 var A88 = { name: "Beyond Good And Evil", brewloc: "Hill Farmstead Brewery", style: "American Double / Imperial Stout", rank: 89, latt: "44.606639", long: "-72.263446" }
 var A89 = { name: "Last Buffalo In The Park", brewloc: "Funky Buddha Brewery", style: "American Porter", rank: 90, latt: "26.175361", long: "-80.131" }
@@ -99,7 +99,7 @@ var A96 = { name: "Bourbon County Brand Barleywine", brewloc: "Goose Island Beer
 var A97 = { name: "Miami Madness", brewloc: "J. Wakefield Brewing", style: "Berliner Weissbier", rank: 98, latt: "25.799644", long: "-80.19755" }
 var A98 = { name: "The Rusty Nail", brewloc: "Fremont Brewing Company", style: "American Double / Imperial Stout", rank: 99, latt: "47.64896", long: "-122.344521" }
 var A99 = { name: "Grey Monday", brewloc: "The Bruery", style: "American Double / Imperial Stout", rank: 100, latt: "33.86217", long: "-117.879067" }
-var A100 = { name: "Double Double Mosaic Dream", brewloc: "Other Half Brewing Co.", style: "American Double / Imperial IPA", rank: 101, latt: "3.900749", long: "-73.073215" }
+var A100 = { name: "Double Double Mosaic Dream", brewloc: "Other Half Brewing Co.", style: "American Double / Imperial IPA", rank: 101, latt: "40.673823", long: "-73.073215" }
 var A101 = { name: "The Broken Truck", brewloc: "de Garde Brewing", style: "American Wild Ale", rank: 102, latt: "45.420721", long: "-123.800167" }
 var A102 = { name: "Wide Awake It's Morning", brewloc: "Funky Buddha Brewery", style: "American Porter", rank: 103, latt: "26.175361", long: "-80.131" }
 var A103 = { name: "Trappistes Rochefort 10", brewloc: "Brasserie de Rochefort", style: "Quadrupel (Quad)", rank: 104, latt: "50.550251", long: "9.67621" }
@@ -127,7 +127,7 @@ var A124 = { name: "Montmorency Vs Balaton", brewloc: "Jester King Brewery", sty
 var A125 = { name: "Sosus", brewloc: "Toppling Goliath Brewing Company", style: "American Double / Imperial IPA", rank: 126, latt: "43.2739945", long: "-91.7263179" }
 var A126 = { name: "Drie Fonteinen Framboos", brewloc: "Brouwerij 3 Fonteinen", style: "Lambic - Fruit", rank: 127, latt: "50.7666", long: "4.3079" }
 var A127 = { name: "Dark Star: Coffee Edition", brewloc: "Fremont Brewing Company", style: "American Double / Imperial Stout", rank: 128, latt: "47.64896", long: "-122.344521" }
-var A128 = { name: "Double Mylar Bags", brewloc: "Other Half Brewing Co.", style: "American Double / Imperial IPA", rank: 129, latt: "3.900749", long: "-73.073215" }
+var A128 = { name: "Double Mylar Bags", brewloc: "Other Half Brewing Co.", style: "American Double / Imperial IPA", rank: 129, latt: "40.673823", long: "-73.073215" }
 var A129 = { name: "Saison Bernice", brewloc: "Sante Adairius Rustic Ales", style: "Saison / Farmhouse Ale", rank: 130, latt: "36.983398", long: "-121.949568" }
 var A130 = { name: "Drie Fonteinen Hommage", brewloc: "Brouwerij 3 Fonteinen", style: "Lambic - Fruit", rank: 131, latt: "50.7666", long: "4.3079" }
 var A131 = { name: "Mocha Wednesday", brewloc: "The Bruery", style: "American Double / Imperial Stout", rank: 132, latt: "33.86217", long: "-117.879067" }
@@ -148,14 +148,14 @@ var A145 = { name: "Drie Fonteinen Oude Geuze Golden", brewloc: "Brouwerij 3 Fon
 var A146 = { name: "Double Barrel Jesus", brewloc: "Evil Twin Brewing", style: "American Double / Imperial Stout", rank: 147, latt: "40.7091", long: "-73.96865" }
 var A147 = { name: "Prairie Apple Brandy Noir", brewloc: "Prairie Artisan Ales", style: "American Double / Imperial Stout", rank: 148, latt: "36.136635", long: "-96.046502" }
 var A148 = { name: "Bad Boy", brewloc: "Alpine Beer Company", style: "American Double / Imperial IPA", rank: 149, latt: "32.8351644", long: "-116.7626535" }
-var A149 = { name: "Double Double Mosaic Daydream", brewloc: "Other Half Brewing Co.", style: "American Double / Imperial IPA", rank: 150, latt: "3.900749", long: "-73.073215" }
+var A149 = { name: "Double Double Mosaic Daydream", brewloc: "Other Half Brewing Co.", style: "American Double / Imperial IPA", rank: 150, latt: "40.673823", long: "-73.073215" }
 var A150 = { name: "Abraxas", brewloc: "Perennial Artisan Ales", style: "American Double / Imperial Stout", rank: 151, latt: "38.545668", long: "-90.265731" }
 var A151 = { name: "Stickee Monkee", brewloc: "Firestone Walker Brewing Co.", style: "Quadrupel (Quad)", rank: 152, latt: "35.595861111111", long: "-120.69433333333" }
 var A152 = { name: "Double Stack", brewloc: "Great Notion Brewing", style: "American Double / Imperial Stout", rank: 153, latt: "45.558896", long: "-122.642738" }
 var A153 = { name: "Hold On To Sunshine", brewloc: "Tree House Brewing Company", style: "Milk / Sweet Stout", rank: 154, latt: "42.092794", long: "-72.288258" }
 var A154 = { name: "Hopslam Ale", brewloc: "Bell's Brewery", style: "American Double / Imperial IPA", rank: 155, latt: "35.7112", long: "-89.0876" }
 var A155 = { name: "Trappist Westvleteren 8 (VIII)", brewloc: "Brouwerij Westvleteren", style: "Dubbel", rank: 156, latt: "50.8957", long: "2.72" }
-var A156 = { name: "Barrel-Aged Silhouette", brewloc: "Lift Bridge Brewery", style: "Russian Imperial Stout", rank: 157, latt: "51.244831", long: "1.12542" }
+var A156 = { name: "Barrel-Aged Silhouette", brewloc: "Lift Bridge Brewery", style: "Russian Imperial Stout", rank: 157, latt: "45.039151", long: "-92.831756" }
 var A157 = { name: "St. Bernardus Abt 12", brewloc: "Brouwerij St. Bernardus NV", style: "Quadrupel (Quad)", rank: 158, latt: "38.561397", long: "-116.70843" }
 var A158 = { name: "Maple Bacon Coffee Porter", brewloc: "Funky Buddha Brewery", style: "American Porter", rank: 159, latt: "26.175361", long: "-80.131" }
 var A159 = { name: "Last Snow", brewloc: "Funky Buddha Brewery", style: "American Porter", rank: 160, latt: "26.175361", long: "-80.131" }
@@ -166,7 +166,7 @@ var A163 = { name: "Bodhi", brewloc: "Columbus Brewing Company", style: "America
 var A164 = { name: "Temptation", brewloc: "Russian River Brewing Company", style: "American Wild Ale", rank: 165, latt: "38.47", long: "-123.01" }
 var A165 = { name: "Fuzzy Baby Ducks IPA", brewloc: "New England Brewing Co.", style: "American IPA", rank: 166, latt: "41.339156", long: "-72.981594" }
 var A166 = { name: "Rodenbach Caractere Rouge", brewloc: "Brouwerij Rodenbach N.V.", style: "Flanders Red Ale", rank: 167, latt: "38.561397", long: "-116.70843" }
-var A167 = { name: "Double All Citra Everything", brewloc: "Other Half Brewing Co.", style: "American Double / Imperial IPA", rank: 168, latt: "3.900749", long: "-73.073215" }
+var A167 = { name: "Double All Citra Everything", brewloc: "Other Half Brewing Co.", style: "American Double / Imperial IPA", rank: 168, latt: "40.673823", long: "-73.073215" }
 var A168 = { name: "Aurelian Lure", brewloc: "Jester King Brewery", style: "American Wild Ale", rank: 169, latt: "30.2307", long: "-97.9992" }
 var A169 = { name: "Dragon Fruit Passion Fruit Berliner", brewloc: "J. Wakefield Brewing", style: "Berliner Weissbier", rank: 170, latt: "25.799644", long: "-80.19755" }
 var A170 = { name: "Samuel Adams Utopias", brewloc: "Boston Beer Company (Samuel Adams)", style: "American Strong Ale", rank: 171, latt: "42.365803", long: "-71.034729" }
@@ -229,7 +229,7 @@ var A226 = { name: "Citra Pale Ale", brewloc: "Hill Farmstead Brewery", style: "
 var A227 = { name: "Péché Mortel", brewloc: "Brasserie Dieu du Ciel!", style: "American Double / Imperial Stout", rank: 228, latt: "45.52271", long: "-73.593251" }
 var A228 = { name: "Péché Mortel", brewloc: "Brasserie Dieu du Ciel!", style: "American Double / Imperial Stout", rank: 229, latt: "45.52271", long: "-73.593251" }
 var A229 = { name: "M-43 N.E. India Pale Ale", brewloc: "Old Nation Brewing Co.", style: "American IPA", rank: 230, latt: "42.687734", long: "-84.303289" }
-var A230 = { name: "Hop Venom Double IPA", brewloc: "Boneyard Beer Company", style: "American Double / Imperial IPA", rank: 231, latt: "47.507383", long: "19.031193" }
+var A230 = { name: "Hop Venom Double IPA", brewloc: "Boneyard Beer Company", style: "American Double / Imperial IPA", rank: 231, latt: "44.053975", long: "-121.308061" }
 var A231 = { name: "Cantillon Vigneronne", brewloc: "Brasserie Cantillon", style: "Lambic - Fruit", rank: 232, latt: "50.84166", long: "4.335366" }
 var A232 = { name: "Coolship Resurgam", brewloc: "Allagash Brewing Company", style: "American Wild Ale", rank: 233, latt: "43.7031477", long: "-70.3176931" }
 var A233 = { name: "Double Scaled", brewloc: "Trillium Brewing Company", style: "American IPA", rank: 234, latt: "42.349827", long: "-71.048045" }
@@ -254,24 +254,24 @@ var data = [A0, A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12, A13, A14, A15
 //console.log(data)
 var breweryArr = [];
 var coordsArr = [];
-for (var i = 0; i < data.length; i++) {
-    if (coordsArr.some(row => row.includes(data[i].long)) === false) {
-        coordsArr.push([data[i].latt, data[i].long])
-        breweryArr.push(data[i].brewloc);
+ for (var i = 0; i < data.length; i++){
+   if (coordsArr.some(row => row.includes(data[i].long)) === false){ 
+coordsArr.push([data[i].latt, data[i].long])
+breweryArr.push(data[i].brewloc);
 
 
-    }
-}
-var brewerySets = Math.floor(coordsArr.length / 25)
-var coordsArrP1 = coordsArr.slice(0, 24)
-var coordsArrP2 = coordsArr.slice(25, 49)
-var coordsArrP3 = coordsArr.slice(50, 74)
-var coordsArrP4 = coordsArr.slice(75, 78)
+ }
+ }
+var brewerySets =  Math.floor(coordsArr.length/25)
+var coordsArrP1 = coordsArr.slice(0,24)
+var coordsArrP2 = coordsArr.slice(25,49)
+var coordsArrP3 = coordsArr.slice(50,74)
+var coordsArrP4 = coordsArr.slice(75,78)
 //console.log(breweryArr)
 
  //console.log(coordsArr);
 
-
+ 
 //retireves place id based on specific name using autocomplete api
 
 /*

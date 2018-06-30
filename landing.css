@@ -1,12 +1,9 @@
-/* ====== ALL ELEMENTS STYLING ============= */
-
 body {
     background:  url('https://media.giphy.com/media/8SbOVFqoQqstq/giphy.gif') no-repeat center center fixed;
-    background-size: cover;
+  
+  background-size: cover;
 }
-a {
-    text-decoration: none;
-}
+
 #title{
     font: 64px/30px 'Vast Shadow', 'Arial Black';
     font-style: normal;
@@ -59,7 +56,9 @@ a {
     text-shadow: 2px 2px 8px black;
 }
 
-
+a {
+    text-decoration: none;
+}
 
 #check:hover {
     color: #865;
