@@ -254,24 +254,24 @@ var data = [A0, A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12, A13, A14, A15
 //console.log(data)
 var breweryArr = [];
 var coordsArr = [];
- for (var i = 0; i < data.length; i++){
-   if (coordsArr.some(row => row.includes(data[i].long)) === false){ 
-coordsArr.push([data[i].latt, data[i].long])
-breweryArr.push(data[i].brewloc);
+for (var i = 0; i < data.length; i++) {
+    if (coordsArr.some(row => row.includes(data[i].long)) === false) {
+        coordsArr.push([data[i].latt, data[i].long])
+        breweryArr.push(data[i].brewloc);
 
 
- }
- }
-var brewerySets =  Math.floor(coordsArr.length/25)
-var coordsArrP1 = coordsArr.slice(0,24)
-var coordsArrP2 = coordsArr.slice(25,49)
-var coordsArrP3 = coordsArr.slice(50,74)
-var coordsArrP4 = coordsArr.slice(75,78)
+    }
+}
+var brewerySets = Math.floor(coordsArr.length / 25)
+var coordsArrP1 = coordsArr.slice(0, 24)
+var coordsArrP2 = coordsArr.slice(25, 49)
+var coordsArrP3 = coordsArr.slice(50, 74)
+var coordsArrP4 = coordsArr.slice(75, 78)
 //console.log(breweryArr)
 
  //console.log(coordsArr);
 
- 
+
 //retireves place id based on specific name using autocomplete api
 
 /*

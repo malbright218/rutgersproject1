@@ -1,36 +1,29 @@
-#map {
-  height: 250px;
-  margin: 0;
-  padding: 0px;
-  width: 100%;
-}
-#wrapper {
-  height: 50%;
-  width: 100%;
-  position: fixed;
-  top: 0;
-  z-index: 10000;
-}
-#card {
-  margin-top: 350px;
-  position: absolute;
-  z-index: -10000;
-}
-
-#buttons {
-  margin-top: 25%;
-}
-
-#cards {
-  margin-top: 15px;
-}
-
+/* ====== ALL ELEMENTS STYLING ============= */
 /* Optional: Makes the sample page fill the window. */
 html, body {
   height: 100%;
-  
 }
-
+tr {
+  height: 60px;
+  font-family: 'Monda', sans-serif;
+  color: #000;
+  font-size: 12px;
+}
+h1{
+  font-family: 'Vast Shadow', cursive;
+  color: gold;
+ }
+h5 {
+  font-family: 'Oswald', sans-serif;
+ }
+ h6 {
+  font-family: 'Fugaz One', cursive
+}
+li {
+  text-align: center;
+ }
+/* ====== ALL CLASS STYLING ============= */
+/*=== Map related classes ===*/
 .controls {
   background-color: #fff;
   border-radius: 2px;
@@ -48,12 +41,78 @@ html, body {
   text-overflow: ellipsis;
   width: 400px;
 }
-
 .controls:focus {
   border-color: #4d90fe;
 }
+/*=== Card related classes ===*/
 .title {
   font-weight: bold;
+}
+.borderless td, .borderless th {
+  border: none;
+} 
+.card {
+  display: inline;
+  width: 25%;
+  float: left;
+  padding: 10px;
+  margin: 0 auto;
+  position: relative;
+}
+.card-text {
+  font-size: 8pt;
+  word-wrap: 
+}
+.btn, .btn-primary {
+  width: 100%;
+  color: #fff;
+  text-align: left;
+}
+.number-circle {
+ border-radius: 50%;
+ behavior: url(PIE.htc);
+ /* remove if you don't care about IE8 */
+ width: 40px;
+ height: 40px;
+ padding-left: 8px;
+ padding-right: 8px;
+ padding-top: 14px;
+ padding-bottom: 0px;
+ background: #157EFB;
+ color: #fff;
+ text-align: center;
+ font: 14px Arial, sans-serif;
+}
+.cardin {
+  display: inline;
+}
+/*=== Navbar related classes ===*/
+.navbar {
+  background: #157EFB;
+  width: 100%;
+  border-bottom: 3px solid gold;
+  height: 50px;
+}
+.button:hover {
+  background-color: #2EE59D;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+/* ====== ALL CLASS STYLING ============= */
+/*=== Map related id's ===*/
+#map {
+  height: 250px;
+  margin: 0;
+  padding: 0px;
+  width: 100%;
+}
+#wrapper {
+  height: 50%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 10000;
 }
 #infowindow-content {
   display: none;
@@ -61,137 +120,55 @@ html, body {
 #map #infowindow-content {
   display: inline;
 }
-.borderless td, .borderless th {
-  border: none;
-} 
-
-tr {
-  height: 60px;
-  font-family: 'Monda', sans-serif;
-  color: #000;
-  font-size: 12px;
+/*=== Card related id's ===*/
+#card {
+  margin-top: 350px;
+  position: absolute;
+  z-index: -10000;
 }
-
-h1{
-  font-family: 'Vast Shadow', cursive;
+#cards {
+  margin-top: 15px;
+}
+/*=== Navbar related id's ===*/
+#clearroute {
+  border-radius: 12px;
+  background-color:white;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+}
+#for {
   color: gold;
+  padding: 0;
+  margin-left: 4px;
+  margin-right: 4px;
  }
-
- h5 {
-  font-family: 'Oswald', sans-serif;
- }
-
- li {
-   text-align: center;
- }
-
- #for {
-   color: gold;
-   padding: 0;
-   margin-left: 4px;
-   margin-right: 4px;
- }
-
- #cheers {
+#cheers {
   color: gold;
   padding: 0;
   margin-left: 4px;
   margin-right: -204px;
  }
-
- #hdbeers {
+#hdbeers {
   color: gold;
   padding: 0;
   margin-left: -204px;
   margin-right: 4px;
  }
-
- h6 {
-   font-family: 'Fugaz One', cursive
- }
- 
- .navbar {
-  background: #157EFB;
-  width: 100%;
-  border-bottom: 3px solid gold;
+#sortbar {
   height: 50px;
-  
  }
-
- #sortbar {
-   height: 50px;
+#navrow, #nav, #navcol {
+  width: 100%;
  }
-
- body{
-
-  /*background-image: url("https://artisanalbrewworks.com/wp-content/uploads/2016/03/beer-background.jpg");*/
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
- }
-
- #navrow, #nav, #navcol {
-   width: 100%;
- }
-.card {
-   display: inline;
-   width: 25%;
-   float: left;
-   padding: 10px;
-   margin: 0 auto;
-   position: relative;
- }
- 
-.navbtn!important {
-  border: none;
-  float: right;
-  font-size: 1rem;
-  position: relative;
-}
-
-
- .card-text {
-   font-size: 8pt;
-   word-wrap: 
- }
-
- .btn, .btn-primary {
-   width: 100%;
-   color: #fff;
-   text-align: left;
- }
- 
- .number-circle {
-  border-radius: 50%;
-  behavior: url(PIE.htc);
-  /* remove if you don't care about IE8 */
-  width: 40px;
-  height: 40px;
-  padding-left: 8px;
-  padding-right: 8px;
-  padding-top: 14px;
-  padding-bottom: 0px;
-  background: #157EFB;
-  color: #fff;
-  text-align: center;
-  font: 14px Arial, sans-serif;
-}
 #routebtn {
-border-radius: 12px;
-     background-color:white;
-     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-     transition: all 0.3s ease 0s;
-     cursor: pointer;
-     outline: none;
+  border-radius: 12px;
+  background-color:white;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
 }
 
-.button:hover {
-background-color: #2EE59D;
-box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
-color: #fff;
-transform: translateY(-7px);
-}
 
-.cardin {
-display: inline;
-}
